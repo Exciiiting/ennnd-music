@@ -1,9 +1,10 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const prefix = "1" 
+const prefix = "E" 
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
+ client.user.setActivity("Eplay | Only Music.",{type: 'WATCHING'})
     console.log('')
   console.log('')
   console.log('╔[═════════════════════════════════════════════════════════════════]╗')
@@ -223,13 +224,13 @@ function play(guild, song) {
     serverQueue.textChannel.send(`Starting The Song : **${song.title}**`);
 }
  
-const adminprefix = "-";
-const devs = ['حط ايدي تبعك'];
+const adminprefix = "V";
+const devs = ['323160008411971585'];
 client.on('message', message => {
   var argresult = message.content.split(` `).slice(1).join(' ');
     if (!devs.includes(message.author.id)) return;
    
-if (message.content.startsWith(adminprefix + 'setgdame')) {
+if (message.content.startsWith(adminprefix + 'setgame')) {
   client.user.setGame(argresult);
     message.channel.sendMessage(`**${argresult} تم تغيير بلاينق البوت إلى **`)
 } else
@@ -242,7 +243,7 @@ return message.reply("**لا يمكنك تغيير الاسم يجب عليك ا
 client.user.setAvatar(argresult);
   message.channel.sendMessage(`**${argresult}** : تم تغير صورة البوت`);
       } else    
-if (message.content.startsWith(adminprefix + 'setT')) {
+if (message.content.startsWith(adminprefix + 'st')) {
   client.user.setGame(argresult, "https://www.twitch.tv/idk");
     message.channel.sendMessage(`**تم تغيير تويتش البوت إلى  ${argresult}**`)
 }
@@ -252,20 +253,19 @@ client.on("message", message => {
     if (message.content === `${prefix}help`) {
   const embed = new Discord.RichEmbed()
       .setColor("#000000")
-      .setDescription(`─═══════ {✯:dart: Music Commands - اوامر الموسيقى :dart:✯} ═══════─
-${prefix}play => To Play A Song From Youtube
-${prefix}skip => To Skip The Song And Play The Next Song
-${prefix}stop => To Pause The Song
-${prefix}resume => To Resume The Song
-${prefix}vol => To Change The Volume Song
-${prefix}leave => To Disconnect The Bot From Your Voicechannel
-${prefix}np => To View The Song Played
-${prefix}queue => To View The Songs Queue
-${prefix}invite => To Invite The Bot In Your Server
-
+      .setDescription(`
+─═══════ ✯** Music Commands **✯ ═══════─
+**${prefix}play** - To Play A Song From Youtube.
+**${prefix}skip** - To Skip The Song And Play The Next Song.
+**${prefix}stop** - To Pause The Song.
+**${prefix}resume** - To Resume The Song.
+**${prefix}vol** - To Change The Volume Song.
+**${prefix}leave** - To Disconnect The Bot From Your Voicechannel.
+**${prefix}np** - To View The Song Played.
+**${prefix}queue** - To View The Songs Queue.
+**${prefix}invite** - To Invite The Bot In Your Server.
  `)
-   message.author.sendEmbed(embed)
-      message.channel.send(`:white_check_mark: I've DMed you with my help list`)
+      message.author.sendEmbed(embed)
    
    }
    });
@@ -298,5 +298,26 @@ client.on('message', message => {
     message.author.send({embed})
   }
 });
+
+client.on('ready', () => {
+   console.log(`----------------`);
+client.user.setStatus("idle")
+});
  
+
+client.on('ready',async () => {
+console.log("Starting..");
+let g = client.guilds.get("507500031994101763");
+let c = g.channels.get("507858472038039553");
+if(c.type === 'voice') {
+c.join();
+setInterval(() => {
+if(!g.me.voiceChannel) c.join();
+}, 1);
+} else {
+console.log("Failed To Join:\n The Channel Type isn't \"text\"");
+}
+});
+
+
 client.login(process.env.BOT_TOKEN);
